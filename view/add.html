@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laboratorio 1 SD</title>
+
+    
+    <link href="css/cover.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Libreria utilizada para la conexion del Socket.io -->
+    <script src="socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Librerias necesarias para el funcionamiento de la página -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="function/index.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://api.html5media.info/1.1.6/html5media.min.js"></script>
+  </head>
+
+  <body style="background-color: #5CB85C;">
+
+
+   <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        
+            <img alt="Chat con NodeJS" src="img/logo.png" class="adaptar"> <h5 style="color: #FFFFFF;">Laboratorio 1 SD</h4>
+            
+
+        </div>
+      </div>
+    </nav>
+ 	
+
+ 	<div class="container">
+ 		<div class="well">
+ 			<h1> Agregar Radio</h1>
+ 			<br>
+ 			<div class="row">
+ 				<div class="col-md-6">
+ 					<img src="img/radio.png">
+ 				</div>
+ 				<div class="col-md-6">
+						   <form action="/addtoDB" method="post">
+							   	 <div class="form-group">
+									    <label for="nombreRadio">Nombre Radio</label>
+									    <input type="text" class="form-control" id="nombreRadio" placeholder="Nombre" name="radio[nombre]" required>
+								 </div>
+								 <div class="form-group">
+									    <label for="dirRadio">Dirección Radio</label>
+									    <input type="text" class="form-control" id="dirRadio " placeholder="Dirección ip" name="radio[ip]" required>
+								 </div>
+								 <div class="form-group">
+									    <label for="numPar"> Número maximo de participantes</label>
+									    <input type="text" class="form-control" id="numPar" placeholder="Participantes" name="radio[numPar]" required>
+								 </div>
+
+						  		<button id="enviar2" name="send" type="submit" class="btn btn-info btn-lg btn-block">Ingresar la radio!</button>
+						  </form>
+
+ 				</div>
+ 			</div>
+ 
+ 		</div>
+ 	</div>
+  </body>
+<script src="/socket.io/socket.io.js"></script>
+
+</html>
+

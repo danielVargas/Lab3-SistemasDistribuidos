@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laboratorio 1 SD</title>
+
+    
+    <link href="css/cover.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Libreria utilizada para la conexion del Socket.io -->
+    <script src="socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Librerias necesarias para el funcionamiento de la página -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="function/index.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://api.html5media.info/1.1.6/html5media.min.js"></script>
+  </head>
+
+  <body style="background-color: #5CB85C;">
+
+   <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        
+            <img alt="Chat con NodeJS" src="img/logo.png" class="adaptar"> <h5 style="color: #FFFFFF;">Laboratorio 1 SD</h4>
+
+        </div>
+      </div>
+    </nav>
+  <div class="alert alert-success alert-dismissable container">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>¡Bienvenido!</strong>
+    </div>
+
+      
+        <div id= "cuerpo"class="cover-container well" >
+          <div class="inner cover">
+            <script type="text/javascript">//http://firewall.pulsradio.com</script>
+                       <div id="contenedorRadio"></div>
+                       <div id="contenedorError"></div>
+            <h1 class="cover-heading btn btn-primary btn-lg btn-block">Sala: <p  id="tittleRoom"></p> 
+            </h1>
+                <br>        
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div id="chat" class="panel panel-default text-left">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="well text-left alert alert-info" id="users">Usuarios conectados: <br>
+                            
+                        </div>
+                    </div>
+                  </div>
+                    <div class="well">
+                      <input class="form-control" id="text-send" placeholder="Send text"><br>
+                      <button class="btn btn-success" id="btn-send">Enviar</button>
+                    </div>
+            </div>
+        </div>
+
+   
+
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title alert alert-success">Ingrese su nombre de usuario y seleccione sala de radio: </h4>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" id="nombreUsuario" placeholder="Su nombre es...">
+            <br>
+          </div>
+           
+          <div class="modal-footer">
+            <div class="alert-success well">Seleccione una radio</div>
+     
+                <select class="form-control" id="sala2" data-style="btn-success" name="seleccion">
+                </select>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnEntrar">Entrar</button>
+              
+            
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+  </body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+  var socket = io();
+  $('#myModal').modal('show');
+</script>
+</html>

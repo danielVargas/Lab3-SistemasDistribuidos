@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Taller de sistemas distribuidos</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
+
+    <!-- Libreria utilizada para la conexion del Socket.io -->
+    <script src="socket.io/socket.io.js"></script>
+    <!-- Librerias necesarias para el funcionamiento de la página -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="function/index.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+      
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand"> </h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="/">Clase #2</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Chat a través de un Broadcast</h1>
+            <div id="chat">
+            </div>
+            <div>
+              <input class="form-control" id="text-send" placeholder="Send text">
+              <button class="btn btn-default" id="btn-send">Enviar</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+</script>
+</html>
