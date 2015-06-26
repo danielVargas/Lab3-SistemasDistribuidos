@@ -11,6 +11,7 @@ var d = domain.create();
 
 
 var port = 3000;
+var nservidores = 3;
 server.listen(port);
 var databaseUrl = "estudiantes";
 
@@ -68,6 +69,10 @@ app.post('/addtoDB', function(req, res){
 	  
 	  var r = sha1(rut.toString());
 	  console.log(r);
+
+	  var servidor = r%nservidores;
+
+	  console.log("El servidor que guarda los datos es: " + servidor );
 
 	  console.log(rut + " " + nombre + " "+ apellidoP + " " + apellidoM + " " + email + " " + universidad + " " + carrera + " " + años + " " );
 	  /*
