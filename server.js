@@ -5,7 +5,7 @@ var express = require('express')
   , io = require('socket.io').listen(server);
 var bodyParser = require('body-parser');
 var ObjectID = require("mongodb").ObjectID;
-
+var CryptoJS = require("crypto-js");
 var coneccion;
 var domain = require('domain');
 var d = domain.create();
@@ -13,7 +13,7 @@ var d = domain.create();
 
 var port = 3000;
 server.listen(port);
-var databaseUrl = "radios";
+var databaseUrl = "estudiantes";
 
 var usuariosOnline = new Array();;
 console.log('Start Web Services NodeJS in Port ' + port);
@@ -54,20 +54,43 @@ app.post('/eliminar', function(req, res){
 	res.sendfile(__dirname + "/view/delete.html");
 });
 
+String.prototype.hashCode = function(){
+    var hash = 0;
+    if (this.length == 0) return hash;
+    for (i = 0; i < this.length; i++) {
+        char = this.charCodeAt(i);
+        hash = ((hash<<5)-hash)+char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+
+}
+
 app.post('/addtoDB', function(req, res){
 	  var post_data = req.body;
-	
-	  var nombre = post_data["radio[nombre]"];
-	  var ip = post_data["radio[ip]"];
-	  var numPar= post_data["radio[numPar]"]; 
-	  var collec = ['radios'];
+
+ 	  var rut =  post_data["estudiante[rut]"];
+	  var nombre = post_data["estudiante[nombre]"];
+	  var apellidoP = post_data["estudiante[apellidoP]"];
+	  var apellidoM = post_data["estudiante[apellidoM]"];
+	  var email= post_data["estudiante[email]"]; 
+	  var universidad= post_data["estudiante[universidad]"]; 
+	  var carrera= post_data["estudiante[carrera]"]; 
+	  var años= post_data["estudiante[años]"]; 
+	  var collec = ['estudiantes'];
+	  
+	  console.log(rut.hashCode());
+
+	  console.log(rut + " " + nombre + " "+ apellidoP + " " + apellidoM + " " + email + " " + universidad + " " + carrera + " " + años + " " );
+	  /*
 	  var db = require("mongojs").connect(databaseUrl, collec);
 	  var collection = db.collection('radios');
 	  db.radios.save({nombre: nombre, dirección: ip, maxUsers: numPar, actualUser: '0' }, function(err, saved) {
 		  if( err || !saved ) console.log("No se ha podido guardar la radio");
 		  else console.log("Radio guardada con éxito");
 		});
-	   res.sendfile('/');
+		*/
+	   res.redirect('/');
 
 });
 app.post('/deleteToDB', function(req, res){

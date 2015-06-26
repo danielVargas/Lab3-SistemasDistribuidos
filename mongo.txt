@@ -1,0 +1,1 @@
+db.estudiantes.insert({"_id": "179258919" , "nombre" : "Daniel","apellidoP": "Vargas", "apellidoM" : "Mattueus" , "e-mail" : "daniel.vargas@usach.cl" , "universidad" : "USACH" , "carrera" : "Informática" , "años" : "5"})

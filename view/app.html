@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laboratorio 1 SD</title>
+    <title>Laboratorio 3 SD</title>
 
     
-    <link href="css/cover.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Libreria utilizada para la conexion del Socket.io -->
     <script src="socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
+    <link href="css/cover.css" rel="stylesheet">
+    
     <!-- Librerias necesarias para el funcionamiento de la página -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="function/index.js"></script>
@@ -21,14 +21,14 @@
     <script type="text/javascript" src="http://api.html5media.info/1.1.6/html5media.min.js"></script>
   </head>
 
-  <body style="background-color: #5CB85C;">
+  <body>
 
 
-   <nav class="navbar navbar-inverse">
+   <nav class="navbar">
       <div class="container-fluid">
         <div class="navbar-header">
         
-            <img alt="Chat con NodeJS" src="img/logo.png" class="adaptar"> <h5 style="color: #FFFFFF;">Laboratorio 1 SD</h4>
+            <img alt="Chat con NodeJS" src="img/logo.png" class="adaptar"> <h5 >Laboratorio 3 SD</h4>
             
 
         </div>
@@ -38,32 +38,41 @@
 
  	<div class="container">
  		<div class="well">
-      <img src="img/radio-logo.png">
- 			<br>
+      <h1>Bases de datos distribuidas</h1>
+      <br><br><br>
  			<div class="row">
- 				<div class="col-md-6">
- 					<img src="img/radio.png">
- 				</div>
- 				<div class="col-md-6">
+        <div class="col-md-6">
 					<div class="btn-group-vertical" role="group" aria-label="...">
             <form  action="/agregar" method="post">
 
-              <button type="submit" id= "addBtn" class="btn btn-primary btn-lg btn-block"> <i class="glyphicon glyphicon-plus"></i>   Agregar radio</button>
+              <button type="submit" id= "addBtn" class="btn btn-primary btn-lg btn-block"> <i class="glyphicon glyphicon-plus"></i>   Agregar Estudiante</button>
 
             </form>
             <form  action="/modificar" method="post">
-                <button type="submit" id= "modBtn" class="btn btn-primary btn-lg btn-block"> <i class="glyphicon glyphicon-cog"></i>   Modificar radio</button>
+                <button type="submit" id= "modBtn" class="btn btn-primary btn-lg btn-block"> <i class="glyphicon glyphicon-cog"></i>   Modificar Estudiante</button>
             </form>
             
 		 				<form  action="/eliminar" method="post">
-                <button type="submit" id= "delBtn" class="btn btn-primary btn-lg btn-block"> <i class="glyphicon glyphicon-minus"></i>   Eliminar radio</button>
+                <button type="submit" id= "delBtn" class="btn btn-primary btn-lg btn-block"> <i class="glyphicon glyphicon-minus"></i>   Eliminar Estudiante</button>
             </form>
 					</div>
-            <br><br><br><br>
-               <form action="/send" method="post">
-                <button id="enviar" name="send" type="submit" class="btn btn-info btn-lg btn-block">Entrar a una radio!</button>
-              </form>
  				</div>
+         <div class="col-md-6">
+            <div class="btn-group-vertical" role="group" aria-label="...">
+            <form  action="/listarTodos" method="post">
+
+              <button type="submit" id= "addBtn" class="btn btn-success btn-lg btn-block"> <i class="fa fa-users"></i>   Listar todos los estuiantes</button>
+
+            </form>
+            <form  action="/listarUsach" method="post">
+                <button type="submit" id= "modBtn" class="btn btn-success btn-lg btn-block"> <i class="glyphicon glyphicon-education"></i>   Listar todos los estuiantes que estudian en USACH</button>
+            </form>
+            
+            <form  action="/listarBecados" method="post">
+                <button type="submit" id= "delBtn" class="btn btn-success btn-lg btn-block"> <i class="glyphicon glyphicon-piggy-bank"></i>  Listar todos los estuiantes becados</button>
+            </form>
+          </div>
+         </div>
  			</div>
  
  		</div>
