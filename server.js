@@ -69,8 +69,7 @@ app.post('/addtoDB', function(req, res){
 	  
 	  var r = sha1(rut.toString());
 	  console.log(r);
-
-	  var servidor = r%nservidores;
+	  var servidor = parseInt(r,16)%nservidores;
 
 	  console.log("El servidor que guarda los datos es: " + servidor );
 
