@@ -10,6 +10,16 @@ try {
 		$('#tablaListarTodos').append('<tr><td>'+ data["_id"]+'</td><td>'+ data["nombre"]+'</td><td>'+ data["apellidoP"]+'</td><td>'+ data["apellidoM"]+'</td><td>'+ data["e-mail"]+'</td><td>'+ data["universidad"]+'</td><td>'+ data["carrera"]+'</td><td>'+ data["años"]+'</td></tr>');
 	});
 
+
+	socket.on('cargarTodosUSACH', function (data){
+		$('#tablaListarUSACH').append('<tr><td>'+ data["_id"]+'</td><td>'+ data["nombre"]+'</td><td>'+ data["apellidoP"]+'</td><td>'+ data["apellidoM"]+'</td><td>'+ data["e-mail"]+'</td><td>'+ data["universidad"]+'</td><td>'+ data["carrera"]+'</td><td>'+ data["años"]+'</td></tr>');
+	});
+
+	socket.on('cargarTodosPRIMER', function (data){
+		$('#tablaListarPrimer').append('<tr><td>'+ data["_id"]+'</td><td>'+ data["nombre"]+'</td><td>'+ data["apellidoP"]+'</td><td>'+ data["apellidoM"]+'</td><td>'+ data["e-mail"]+'</td><td>'+ data["universidad"]+'</td><td>'+ data["carrera"]+'</td><td>'+ data["años"]+'</td></tr>');
+	});
+
+
 	socket.on('cargarEstudiantes', function (data){
 		
 		$('#sala').append('<option value="'+ data["_id"]+'">'+ data["nombre"]+'</option>');
@@ -52,6 +62,15 @@ $(function() {
 	$('#listartodosbtn').click(function() {
 		
 		socket.emit('listarTodosBtn', {});
+	});
+
+	$('#listarUSACHbtn').click(function() {
+		
+		socket.emit('listarUsachBtn', {});
+	});	
+	$('#listarPrimerbtn').click(function() {
+		
+		socket.emit('listarPrimerBtn', {});
 	});	
 });
 
