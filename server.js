@@ -45,7 +45,6 @@ app.post('/agregar', function(req, res){
 });
 
 app.post('/modificar', function(req, res){
-
 	res.sendfile(__dirname + "/view/update.html");
 });
 
@@ -53,6 +52,13 @@ app.post('/eliminar', function(req, res){
 
 	res.sendfile(__dirname + "/view/delete.html");
 });
+
+app.post('/listarTodos', function(req, res){
+
+	res.sendfile(__dirname + "/view/listartodos.html");
+});
+
+
 
 app.post('/addtoDB', function(req, res){
 	  var post_data = req.body;
@@ -74,55 +80,109 @@ app.post('/addtoDB', function(req, res){
 	  console.log("El servidor que guarda los datos es: " + servidor );
 
 	  console.log(rut + " " + nombre + " "+ apellidoP + " " + apellidoM + " " + email + " " + universidad + " " + carrera + " " + años + " " );
-	  /*
 	  var db = require("mongojs").connect(databaseUrl, collec);
-	  var collection = db.collection('radios');
-	  db.radios.save({nombre: nombre, dirección: ip, maxUsers: numPar, actualUser: '0' }, function(err, saved) {
-		  if( err || !saved ) console.log("No se ha podido guardar la radio");
-		  else console.log("Radio guardada con éxito");
+	  var collection = db.collection('estudiantes');
+	  db.estudiantes.save({_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años }, function(err, saved) {
+		  if( err || !saved ) console.log("No se ha podido ingresar al estudiante");
+		  else console.log("Estudiante ingresado con éxito");
 		});
-		*/
-	   res.redirect('/');
+	  res.redirect('/');
 
 });
 app.post('/deleteToDB', function(req, res){
 	var post_data = req.body;
 	var id = post_data["seleccion"];
-	var collec = ['radios'];
+	var collec = ['estudiantes'];
 	var db = require("mongojs").connect(databaseUrl, collec);
-	var collection = db.collection('radios');
-	db.radios.remove({_id : ObjectID(id)}, {safe: true},function(err, removed){
-	        if( err || !removed ) console.log("No se ha podido guardar la radio");
-		  	else console.log("Radio eliminada con éxito");
+	var collection = db.collection('estudiantes');
+	db.estudiantes.remove({_id : id}, {safe: true},function(err, removed){
+	        if( err || !removed ) console.log("No se ha podido eliminar el estudiante");
+		  	else console.log("Estudiante eliminado con éxito");
 	   		 });
 	
 	 res.redirect('/');
 });
 app.post('/updatetoDB', function(req, res){
 	var post_data = req.body;
-	  var id = post_data["radio[id]"];
-	  var nombre = post_data["radio[nombre]"];
-	  var ip = post_data["radio[ip]"];
-	  var numPar= post_data["radio[numPar]"]; 
-	var collec = ['radios'];
+	var rut =  post_data["estudiante[rut]"];
+	var nombre = post_data["estudiante[nombre]"];
+	var apellidoP = post_data["estudiante[apellidoP]"];
+	var apellidoM = post_data["estudiante[apellidoM]"];
+	var email= post_data["estudiante[email]"]; 
+	var universidad= post_data["estudiante[universidad]"]; 
+	var carrera= post_data["estudiante[carrera]"]; 
+	var años= post_data["estudiante[años]"]; 
+	var collec = ['estudiantes'];
+	  
 	var db = require("mongojs").connect(databaseUrl, collec);
-	var collection = db.collection('radios');
+	var collection = db.collection('estudiantes');
 
-	db.radios.update({_id:ObjectID(id)},
-			{"nombre": nombre , 
-			"dirección" : ip,
-			"maxUsers": numPar,
-			"actualUser": 0},
-			 { upsert: true },
+	db.estudiantes.update({ "_id" : rut },
+			{_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años },
+		
 			 function(err, updated){
-	        if( err || !updated ) console.log("No se ha podido guardar la radio");
-		  	else console.log("Radio modificada con éxito");
+	        if( err || !updated ) console.log("No se ha podido guardar el estudiante");
+		  	else console.log("Estudiante modificado con éxito");
     // the update is complete
 	});
 
 	res.redirect('/');
 });
 
+
+io.sockets.on('connection', function (socket) { // conexion
+	
+	var collec = ['estudiantes'];
+	var db = require("mongojs").connect(databaseUrl, collec);
+	var collection = db.collection('estudiantes');
+	db.estudiantes.find(function(err, docs) {
+	// docs is an array of all the documents in mycollection
+		for (var i = 0; i < docs.length; i++) {
+			socket.emit('cargarEstudiantes', docs[i]);
+			
+		};
+
+
+	});
+	socket.on('initRoom', function (data) {
+		socket.join();
+	});
+
+
+
+	socket.on('listarTodosBtn', function (data) {
+		var collec = ['estudiantes'];
+		var db = require("mongojs").connect(databaseUrl, collec);
+		var collection = db.collection('estudiantes');
+		db.estudiantes.find(function(err, docs) {
+		// docs is an array of all the documents in mycollection
+			for (var i = 0; i < docs.length; i++) {
+				socket.emit('cargarTodos', docs[i]);
+				
+			};
+		});
+	});
+
+
+	socket.on('actualizaModificar', function (data){
+			  var id = data.text;
+			  var collec = ['estudiantes'];
+			  var db = require("mongojs").connect(databaseUrl, collec);
+			  var collection = db.collection('estudiantes');
+			  db.estudiantes.find({ "_id" : id},function(err, docs) {
+				// docs is an array of all the documents in mycollection
+					for (var i = 0; i < docs.length; i++) {
+						socket.emit('actualizarFormulario', docs[i]);
+						//
+
+					};
+
+			  });	
+			  
+	});
+
+
+});
 
 function sha1(str) 
 {

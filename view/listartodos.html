@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laboratorio 1 SD</title>
+    <title>Laboratorio 3 SD</title>
 
     
     <link href="css/cover.css" rel="stylesheet">
@@ -34,38 +34,60 @@
       </div>
     </nav>
 
- 	
-
  	<div class="container">
  		<div class="well">
- 			<h1> Eliminar Estudiantes</h1>
+ 			<h1> Listar Todos los Estudiantes</h1>
+ 			<br>
+ 			<button type="submit" id= "listartodosbtn" class="btn btn-success btn-lg btn-block"> <i class="fa fa-users"></i> Muestramelos!</button>
  			<br>
  			<div class="row">
- 				<div class="col-md-3">
- 	
+ 				<div class="col-md-2">
+ 					
  				</div>
- 				<div class="col-md-6">
-						   <form action="/deleteToDB" method="post">
-							   	 <div class="form-group">
-									    <button type="button" class="btn btn-success btn-lg btn-block">
-                        Seleccione un Estudiante
-                      </button>
-                        <select class="form-control" id="sala" data-style="btn-success" name ="seleccion">
-                        </select>
-								 </div>
-						  		<button id="enviar3" name="send" type="submit" class="btn btn-info btn-lg btn-block">Eliminar Estudiante!</button>
-						  </form>
+	 			<div class="col-md-8">
+	                <table class="table table-hover">
+					    <thead>
+					      <tr class="success">
+					        <th>Rut</th>
+					        <th>Nombre</th>
+					        <th>Apellido Paterno</th>
+					        <th>Apellido Materno</th>
+					        <th>Lastname</th>
+					        <th>e-mail</th>
+					        <th>Universidad</th>
+					        <th>Años</th>
+					      
+					      </tr>
+					    </thead>
+					    <tbody id ="tablaListarTodos">
+					    </tbody>
+					  </table>
 
- 				</div>
-        <div class="col-md-3">
-  
-        </div>
+				</div>
+	 				
+		        <div class="col-md-2">
+		          
+		        </div>
  			</div>
  
  		</div>
  	</div>
   </body>
 <script src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript">
+
+     /* 
+      onchange="updateData()"
+      function updateData() {
+        var x = document.getElementById("sala").value;
+        document.getElementById("demo").innerHTML = "You selected: " + x;
+
+      }*/
+
+    
+</script>
+
 
 </html>
 

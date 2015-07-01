@@ -28,9 +28,8 @@
       <div class="container-fluid">
         <div class="navbar-header">
         
-            <img alt="" src="img/logo.png" class="adaptar"> <h5 >Laboratorio 3 SD</h4>
+             <a href="http://localhost:3000/"><img  alt="" src="img/logo.png" class="adaptar"> <h5 >Laboratorio 3 SD</h4></a>
             
-
         </div>
       </div>
     </nav>
@@ -40,11 +39,11 @@
  			<h1> Modificar Estudiante</h1>
  			<br>
  			<div class="row">
- 				<div class="col-md-6">
- 					<img src="img/radio.png">
+ 				<div class="col-md-3">
+ 					
  				</div>
  				<div class="col-md-6">
-                <label for="sala">Seleccione la radio a modificar:</label>
+                <label for="sala">Seleccione el estudiante que desea modificar:</label>
                 <select class="form-control" id="sala" data-style="btn-success" >
                     <option> </option>
                 </select>
@@ -52,25 +51,44 @@
                 <br>
 						   <form action="/updatetoDB" method="post">
                  <div class="form-group">
-                      <input type="hidden" class="form-control" id="id2" placeholder="ID" name="radio[id]">
-                 </div>
-							   	 <div class="form-group">
-									    <label for="nombreRadio2">Nombre Radio</label>
-									    <input type="text" class="form-control" id="nombreRadio2" placeholder="Nombre" name="radio[nombre]" required>
-								 </div>
-								 <div class="form-group">
-									    <label for="dirRadio">Dirección Radio</label>
-									    <input type="text" class="form-control" id="dirRadio2" placeholder="Dirección ip" name="radio[ip]"required>
-								 </div>
-								 <div class="form-group">
-									    <label for="numPar2"> Número maximo de participantes</label>
-									    <input type="text" class="form-control" id="numPar2" placeholder="Participantes" name="radio[numPar]"required>
-								 </div>
-
-						  		<button id="enviar2" name="send" type="submit" class="btn btn-info btn-lg btn-block">Modificar la radio!</button>
+                      <label for="rut">Rut:</label>
+                      <input type="text" class="form-control" id="rut" placeholder="Rut" name="estudiante[rut]" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="nombre">Nombre:</label>
+                      <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="estudiante[nombre]" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="apellidoP">Apellido Paterno:</label>
+                      <input type="text" class="form-control" id="apellidoP" placeholder="Apellido Paterno" name="estudiante[apellidoP]" required>
+                    </div>
+                   <div class="form-group">
+                      <label for="apellidoM">Apellido Materno:</label>
+                      <input type="text" class="form-control" id="apellidoM" placeholder="Apellido Materno" name="estudiante[apellidoM]" required>
+                    </div>
+                   <div class="form-group">
+                      <label for="email">e-mail:</label>
+                      <input type="text" class="form-control" id="email" placeholder="e-mail" name="estudiante[email]" required>
+                    </div>
+                   <div class="form-group">
+                      <label for="universidad">Universidad:</label>
+                      <input type="text" class="form-control" id="universidad" placeholder="Universidad" name="estudiante[universidad]" required>
+                    </div>
+                   <div class="form-group">
+                      <label for="carrera">Carrera:</label>
+                      <input type="text" class="form-control" id="carrera" placeholder="Carrera" name="estudiante[carrera]" required>
+                    </div>
+                   <div class="form-group">
+                      <label for="años">Años:</label>
+                      <input type="text" class="form-control" id="años" placeholder="Años" name="estudiante[años]" required>
+                    </div>
+                    <button id="enviar2" name="send" type="submit" class="btn btn-info btn-lg btn-block">Modificar al estudiante!</button>
 						  </form>
 
  				</div>
+        <div class="col-md-3">
+          
+        </div>
  			</div>
  
  		</div>
