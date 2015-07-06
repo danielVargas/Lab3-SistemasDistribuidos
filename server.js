@@ -156,6 +156,30 @@ io.sockets.on('connection', function (socket) { // conexion
 
 
 	});
+	var collec = ['estudiantes'];
+	var db = require("mongojs").connect(databaseUrl2, collec);
+	var collection = db.collection('estudiantes');
+	db.estudiantes.find(function(err, docs) {
+	// docs is an array of all the documents in mycollection
+		for (var i = 0; i < docs.length; i++) {
+			socket.emit('cargarEstudiantes', docs[i]);
+			
+		};
+
+
+	});
+	var collec = ['estudiantes'];
+	var db = require("mongojs").connect(databaseUrl3, collec);
+	var collection = db.collection('estudiantes');
+	db.estudiantes.find(function(err, docs) {
+	// docs is an array of all the documents in mycollection
+		for (var i = 0; i < docs.length; i++) {
+			socket.emit('cargarEstudiantes', docs[i]);
+			
+		};
+
+
+	});
 	socket.on('initRoom', function (data) {
 		socket.join();
 	});

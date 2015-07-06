@@ -1,5 +1,6 @@
 db.estudiantes.insert({"_id": "179258919" , "nombre" : "Daniel","apellidoP": "Vargas", "apellidoM" : "Mattueus" , "e-mail" : "daniel.vargas@usach.cl" , "universidad" : "USACH" , "carrera" : "Informática" , "años" : "5"})
-
+db.estudiantes.insert({"_id": "1321312312" , "nombre" : "Juan","apellidoP": "Vargas", "apellidoM" : "Cortez" , "e-mail" : "juan.vargas@usach.cl" , "universidad" : "PUC" , "carrera" : "Informática" , "años" : "1"})
+db.estudiantes.insert({"_id": "312123123" , "nombre" : "Pedro","apellidoP": "Plaza", "apellidoM" : "Perez" , "e-mail" : "pedro.plaza@usach.cl" , "universidad" : "USACH" , "carrera" : "Informática" , "años" : "1"})
 
 ./mongo --port 27018
 ./mongo --port 27019
