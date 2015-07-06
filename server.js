@@ -13,7 +13,9 @@ var d = domain.create();
 var port = 3000;
 var nservidores = 3;
 server.listen(port);
-var databaseUrl = "estudiantes";
+var databaseUrl = "mongodb://localhost:27018/estudiantes";
+var databaseUrl2= "mongodb://localhost:27019/estudiantes";
+var databaseUrl3= "mongodb://localhost:27020/estudiantes";
 
 var usuariosOnline = new Array();;
 console.log('Start Web Services NodeJS in Port ' + port);

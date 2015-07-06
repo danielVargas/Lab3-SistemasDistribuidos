@@ -1,1 +1,13 @@
 db.estudiantes.insert({"_id": "179258919" , "nombre" : "Daniel","apellidoP": "Vargas", "apellidoM" : "Mattueus" , "e-mail" : "daniel.vargas@usach.cl" , "universidad" : "USACH" , "carrera" : "Informática" , "años" : "5"})
+
+
+./mongo --port 27018
+./mongo --port 27019
+./mongo --port 27020
+
+
+./mongod --dbpath /home/daniel/Escritorio/mongo/db1 --port 27018
+./mongod --dbpath /home/daniel/Escritorio/mongo/db2 --port 27019
+./mongod --dbpath /home/daniel/Escritorio/mongo/db3 --port 27020
+
+
