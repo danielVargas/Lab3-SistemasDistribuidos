@@ -59,16 +59,16 @@ catch (err) {
 
 $(function() {
 
-	$('#listartodosbtn').click(function() {
+	$('#listartodosbtn').ready(function() {
 		
 		socket.emit('listarTodosBtn', {});
 	});
 
-	$('#listarUSACHbtn').click(function() {
+	$('#listarUSACHbtn').ready(function() {
 		
 		socket.emit('listarUsachBtn', {});
 	});	
-	$('#listarPrimerbtn').click(function() {
+	$('#listarPrimerbtn').ready(function() {
 		
 		socket.emit('listarPrimerBtn', {});
 	});	

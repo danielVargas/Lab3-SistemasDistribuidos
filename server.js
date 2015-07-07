@@ -90,30 +90,82 @@ app.post('/addtoDB', function(req, res){
 	  var servidor = parseInt(r,16)%nservidores;
 
 	  console.log("El servidor que guarda los datos es: " + servidor );
+	  
 
-	  console.log(rut + " " + nombre + " "+ apellidoP + " " + apellidoM + " " + email + " " + universidad + " " + carrera + " " + años + " " );
-	  var db = require("mongojs").connect(databaseUrl, collec);
-	  var collection = db.collection('estudiantes');
-	  db.estudiantes.save({_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años }, function(err, saved) {
-		  if( err || !saved ) console.log("No se ha podido ingresar al estudiante");
-		  else console.log("Estudiante ingresado con éxito");
-		});
+	  if(servidor == 0){
+		  var db = require("mongojs").connect(databaseUrl, collec);
+		  var collection = db.collection('estudiantes');
+		  db.estudiantes.save({_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años }, function(err, saved) {
+			  if( err || !saved ) console.log("No se ha podido ingresar al estudiante");
+			  else console.log("Estudiante ingresado con éxito");
+			});
+	  }
+	  else if(servidor == 1){
+		  var db = require("mongojs").connect(databaseUrl2, collec);
+		  var collection = db.collection('estudiantes');
+		  db.estudiantes.save({_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años }, function(err, saved) {
+			  if( err || !saved ) console.log("No se ha podido ingresar al estudiante");
+			  else console.log("Estudiante ingresado con éxito");
+			});
+	  }
+
+	  else if(servidor == 2){
+		  var db = require("mongojs").connect(databaseUrl3, collec);
+		  var collection = db.collection('estudiantes');
+		  db.estudiantes.save({_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años }, function(err, saved) {
+			  if( err || !saved ) console.log("No se ha podido ingresar al estudiante");
+			  else console.log("Estudiante ingresado con éxito");
+			});
+	  }
+	  else {
+	  	console.log("Ha ocurrido un error inesperado");
+	  }
 	  res.redirect('/');
 
 });
+
 app.post('/deleteToDB', function(req, res){
 	var post_data = req.body;
 	var id = post_data["seleccion"];
-	var collec = ['estudiantes'];
-	var db = require("mongojs").connect(databaseUrl, collec);
-	var collection = db.collection('estudiantes');
-	db.estudiantes.remove({_id : id}, {safe: true},function(err, removed){
+	  var collec = ['estudiantes'];
+      var r = sha1(id.toString());
+	  console.log(r);
+	  var servidor = parseInt(r,16)%nservidores;
+
+	  console.log("El servidor que guarda los datos es: " + servidor );
+	  
+
+	  if(servidor == 0){
+		 	var db = require("mongojs").connect(databaseUrl, collec);
+			var collection = db.collection('estudiantes');
+			db.estudiantes.remove({_id : id}, {safe: true},function(err, removed){
 	        if( err || !removed ) console.log("No se ha podido eliminar el estudiante");
 		  	else console.log("Estudiante eliminado con éxito");
 	   		 });
-	
-	 res.redirect('/');
+	  }
+	  else if(servidor == 1){
+		 	var db = require("mongojs").connect(databaseUrl2, collec);
+			var collection = db.collection('estudiantes');
+			db.estudiantes.remove({_id : id}, {safe: true},function(err, removed){
+	        if( err || !removed ) console.log("No se ha podido eliminar el estudiante");
+		  	else console.log("Estudiante eliminado con éxito");
+	   		 });
+	  }
+
+	  else if(servidor == 2){
+		  	var db = require("mongojs").connect(databaseUrl3, collec);
+			var collection = db.collection('estudiantes');
+			db.estudiantes.remove({_id : id}, {safe: true},function(err, removed){
+	        if( err || !removed ) console.log("No se ha podido eliminar el estudiante");
+		  	else console.log("Estudiante eliminado con éxito");
+	   		 });
+	  }
+		else {
+		  	console.log("Ha ocurrido un error inesperado");
+		  }
+	res.redirect('/');
 });
+
 app.post('/updatetoDB', function(req, res){
 	var post_data = req.body;
 	var rut =  post_data["estudiante[rut]"];
@@ -126,19 +178,68 @@ app.post('/updatetoDB', function(req, res){
 	var años= post_data["estudiante[años]"]; 
 	var collec = ['estudiantes'];
 	  
-	var db = require("mongojs").connect(databaseUrl, collec);
-	var collection = db.collection('estudiantes');
 
-	db.estudiantes.update({ "_id" : rut },
-			{_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años },
-		
-			 function(err, updated){
-	        if( err || !updated ) console.log("No se ha podido guardar el estudiante");
-		  	else console.log("Estudiante modificado con éxito");
-    // the update is complete
-	});
+	var r = sha1(rut.toString());
+	  console.log(r);
+	  var servidor = parseInt(r,16)%nservidores;
 
+	  console.log("El servidor que guarda los datos es: " + servidor );
+	  
+
+	  if(servidor == 0){
+
+			var db = require("mongojs").connect(databaseUrl, collec);
+			var collection = db.collection('estudiantes');
+
+			db.estudiantes.update({ "_id" : rut },
+					{_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años },
+				
+					 function(err, updated){
+			        if( err || !updated ) console.log("No se ha podido guardar el estudiante");
+				  	else console.log("Estudiante modificado con éxito");
+		    // the update is complete
+			});
+		 	
+	  }
+	  else if(servidor == 1){
+
+			var db = require("mongojs").connect(databaseUrl2, collec);
+			var collection = db.collection('estudiantes');
+
+			db.estudiantes.update({ "_id" : rut },
+					{_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años },
+				
+					 function(err, updated){
+			        if( err || !updated ) console.log("No se ha podido guardar el estudiante");
+				  	else console.log("Estudiante modificado con éxito");
+		    // the update is complete
+			});
+		 	
+	  }
+
+	  else if(servidor == 2){
+
+
+			var db = require("mongojs").connect(databaseUrl3, collec);
+			var collection = db.collection('estudiantes');
+
+			db.estudiantes.update({ "_id" : rut },
+					{_id: rut , nombre: nombre, apellidoP: apellidoP, apellidoM: apellidoM, 'e-mail' : email, universidad:universidad , carrera: carrera, años:años },
+				
+					 function(err, updated){
+			        if( err || !updated ) console.log("No se ha podido guardar el estudiante");
+				  	else console.log("Estudiante modificado con éxito");
+		    // the update is complete
+			});
+		  	
+	  }
+		else {
+		  	console.log("Ha ocurrido un error inesperado");
+		  }
 	res.redirect('/');
+
+
+
 });
 
 
@@ -197,11 +298,51 @@ io.sockets.on('connection', function (socket) { // conexion
 				
 			};
 		});
+		var collec = ['estudiantes'];
+		var db = require("mongojs").connect(databaseUrl2, collec);
+		var collection = db.collection('estudiantes');
+		db.estudiantes.find(function(err, docs) {
+		// docs is an array of all the documents in mycollection
+			for (var i = 0; i < docs.length; i++) {
+				socket.emit('cargarTodos', docs[i]);
+				
+			};
+		});
+		var collec = ['estudiantes'];
+		var db = require("mongojs").connect(databaseUrl3, collec);
+		var collection = db.collection('estudiantes');
+		db.estudiantes.find(function(err, docs) {
+		// docs is an array of all the documents in mycollection
+			for (var i = 0; i < docs.length; i++) {
+				socket.emit('cargarTodos', docs[i]);
+				
+			};
+		});
 	});
 
 	socket.on('listarUsachBtn', function (data) {
 		var collec = ['estudiantes'];
 		var db = require("mongojs").connect(databaseUrl, collec);
+		var collection = db.collection('estudiantes');
+		db.estudiantes.find({ "universidad" : "USACH"}, function(err, docs) {
+		// docs is an array of all the documents in mycollection
+			for (var i = 0; i < docs.length; i++) {
+				socket.emit('cargarTodosUSACH', docs[i]);
+				
+			};
+		});
+		var collec = ['estudiantes'];
+		var db = require("mongojs").connect(databaseUrl2, collec);
+		var collection = db.collection('estudiantes');
+		db.estudiantes.find({ "universidad" : "USACH"}, function(err, docs) {
+		// docs is an array of all the documents in mycollection
+			for (var i = 0; i < docs.length; i++) {
+				socket.emit('cargarTodosUSACH', docs[i]);
+				
+			};
+		});
+		var collec = ['estudiantes'];
+		var db = require("mongojs").connect(databaseUrl3, collec);
 		var collection = db.collection('estudiantes');
 		db.estudiantes.find({ "universidad" : "USACH"}, function(err, docs) {
 		// docs is an array of all the documents in mycollection
@@ -224,23 +365,80 @@ io.sockets.on('connection', function (socket) { // conexion
 				
 			};
 		});
+		var collec = ['estudiantes'];
+		var db = require("mongojs").connect(databaseUrl2, collec);
+		var collection = db.collection('estudiantes');
+		db.estudiantes.find({ "años" : "1"}, function(err, docs) {
+		// docs is an array of all the documents in mycollection
+			for (var i = 0; i < docs.length; i++) {
+				socket.emit('cargarTodosPRIMER', docs[i]);
+				
+			};
+		});
+		var collec = ['estudiantes'];
+		var db = require("mongojs").connect(databaseUrl3, collec);
+		var collection = db.collection('estudiantes');
+		db.estudiantes.find({ "años" : "1"}, function(err, docs) {
+		// docs is an array of all the documents in mycollection
+			for (var i = 0; i < docs.length; i++) {
+				socket.emit('cargarTodosPRIMER', docs[i]);
+				
+			};
+		});
 	});
 
 	
 	socket.on('actualizaModificar', function (data){
 			  var id = data.text;
 			  var collec = ['estudiantes'];
-			  var db = require("mongojs").connect(databaseUrl, collec);
-			  var collection = db.collection('estudiantes');
-			  db.estudiantes.find({ "_id" : id},function(err, docs) {
-				// docs is an array of all the documents in mycollection
-					for (var i = 0; i < docs.length; i++) {
-						socket.emit('actualizarFormulario', docs[i]);
-						//
 
-					};
 
-			  });	
+			  var r = sha1(id.toString());
+			
+			  var servidor = parseInt(r,16)%nservidores;
+
+			  console.log("El servidor que guarda los datos es: " + servidor );
+			  
+
+			  if(servidor == 0){
+				 	  var db = require("mongojs").connect(databaseUrl, collec);
+					  var collection = db.collection('estudiantes');
+					  db.estudiantes.find({ "_id" : id},function(err, docs) {
+						// docs is an array of all the documents in mycollection
+							for (var i = 0; i < docs.length; i++) {
+								socket.emit('actualizarFormulario', docs[i]);
+								//
+
+							};
+
+					  });
+			  }
+			  else if(servidor == 1){
+					  var collec = ['estudiantes'];
+					  var db = require("mongojs").connect(databaseUrl2, collec);
+					  var collection = db.collection('estudiantes');
+					  db.estudiantes.find({ "_id" : id},function(err, docs) {
+						// docs is an array of all the documents in mycollection
+							for (var i = 0; i < docs.length; i++) {
+								socket.emit('actualizarFormulario', docs[i]);
+								//
+
+							};
+
+					  });
+			  }
+
+			  else if(servidor == 2){
+				  	var db = require("mongojs").connect(databaseUrl3, collec);
+					var collection = db.collection('estudiantes');
+					db.estudiantes.remove({_id : id}, {safe: true},function(err, removed){
+			        if( err || !removed ) console.log("No se ha podido eliminar el estudiante");
+				  	else console.log("Estudiante eliminado con éxito");
+			   		 });
+			  }
+				else {
+				  	console.log("Ha ocurrido un error inesperado");
+				  }
 			  
 	});
 
