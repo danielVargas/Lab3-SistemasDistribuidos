@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laboratorio 3 SD</title>
+
+    
+    <link href="css/cover.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Libreria utilizada para la conexion del Socket.io -->
+    <script src="socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Librerias necesarias para el funcionamiento de la página -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="function/index.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://api.html5media.info/1.1.6/html5media.min.js"></script>
+  </head>
+
+  <body>
+
+
+ <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        
+             <a href="http://localhost:3000/"><img  alt="" src="img/logo.png" class="adaptar"> <h5 >Laboratorio 3 SD</h4></a>
+            
+        </div>
+      </div>
+    </nav>
+
+ 	<div class="container">
+ 		<div class="well">
+ 			<h1> Búsqueda por Apellido:</h1>
+ 			<br>
+
+
+			<div class="row">
+				<div class="col-md-10">
+				  <div class="form-group">
+                          <input type="text" class="form-control" id="apellido" placeholder="Apellido" name="estudiante[apellido]" required>
+              	</div>
+				</div>
+				<div class="col-md-2">
+					  <button type="submit"  class="btn btn-warning btn-lg btn-block"> <i class="glyphicon glyphicon-search"></i></button>
+	            
+				</div>
+			</div>
+			
+		   
+ 			  
+           
+ 			<div id= "listarPrimerbtn"></div>
+ 			<br>
+ 			<div class="row">
+ 				<div class="col-md-2">
+ 					
+ 				</div>
+	 			<div class="col-md-8">
+	                <table class="table table-hover">
+					    <thead>
+					      <tr class="success">
+					        <th>Rut</th>
+					        <th>Nombre</th>
+					        <th>Apellido Paterno</th>
+					        <th>Apellido Materno</th>
+					        <th>e-mail</th>
+					        <th>Universidad</th>
+					        <th>Carrera</th>
+					        <th>Años</th>
+					      
+					      </tr>
+					    </thead>
+					    <tbody id ="tablaListarPrimer">
+					    </tbody>
+					  </table>
+
+				</div>
+	 				
+		        <div class="col-md-2">
+		          
+		        </div>
+ 			</div>
+ 
+ 		</div>
+ 	</div>
+  </body>
+<script src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript">
+
+     /* 
+      onchange="updateData()"
+      function updateData() {
+        var x = document.getElementById("sala").value;
+        document.getElementById("demo").innerHTML = "You selected: " + x;
+
+      }*/
+
+    
+</script>
+
+
+</html>
+

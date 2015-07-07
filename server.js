@@ -71,6 +71,16 @@ app.post('/listarPrimer', function(req, res){
 	res.sendfile(__dirname + "/view/listarPrimer.html");
 });
 
+app.post('/buscarNombre', function(req, res){
+
+	res.sendfile(__dirname + "/view/buscarNombre.html");
+});
+
+
+app.post('/buscarApellido', function(req, res){
+
+	res.sendfile(__dirname + "/view/buscarApellido.html");
+});
 
 app.post('/addtoDB', function(req, res){
 	  var post_data = req.body;
