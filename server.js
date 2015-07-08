@@ -398,6 +398,51 @@ io.sockets.on('connection', function (socket) { // conexion
 	});
 
 	
+	socket.on('SearchByName', function (data){
+			  var nombre = data.text;
+			  var collec = ['estudiantes'];
+			  console.log(nombre);
+			  
+		 	  var db = require("mongojs").connect(databaseUrl, collec);
+			  var collection = db.collection('estudiantes');
+			  db.estudiantes.find({ "nombre" : nombre},function(err, docs) {
+				// docs is an array of all the documents in mycollection
+					for (var i = 0; i < docs.length; i++) {
+						socket.emit('actualizarBusquedaNombre', docs[i]);
+						//
+						
+					};
+
+			  });
+		 	  var db = require("mongojs").connect(databaseUrl2, collec);
+				  var collection = db.collection('estudiantes');
+				  db.estudiantes.find({ "nombre" : nombre},function(err, docs) {
+					// docs is an array of all the documents in mycollection
+						for (var i = 0; i < docs.length; i++) {
+							socket.emit('actualizarBusquedaNombre', docs[i]);
+							//
+							
+						};
+
+				  });
+			 	var db = require("mongojs").connect(databaseUrl3, collec);
+					var collection = db.collection('estudiantes');
+					db.estudiantes.find({ "nombre" : nombre},function(err, docs) {
+						// docs is an array of all the documents in mycollection
+							for (var i = 0; i < docs.length; i++) {
+								socket.emit('actualizarBusquedaNombre', docs[i]);
+								//
+								
+
+							}; 
+
+			  });
+
+		
+			  
+	});
+
+
 	socket.on('actualizaModificar', function (data){
 			  var id = data.text;
 			  var collec = ['estudiantes'];
@@ -441,10 +486,15 @@ io.sockets.on('connection', function (socket) { // conexion
 			  else if(servidor == 2){
 				  	var db = require("mongojs").connect(databaseUrl3, collec);
 					var collection = db.collection('estudiantes');
-					db.estudiantes.remove({_id : id}, {safe: true},function(err, removed){
-			        if( err || !removed ) console.log("No se ha podido eliminar el estudiante");
-				  	else console.log("Estudiante eliminado con éxito");
-			   		 });
+					db.estudiantes.find({ "_id" : id},function(err, docs) {
+						// docs is an array of all the documents in mycollection
+							for (var i = 0; i < docs.length; i++) {
+								socket.emit('actualizarFormulario', docs[i]);
+								//
+
+							};
+
+					  });
 			  }
 				else {
 				  	console.log("Ha ocurrido un error inesperado");
@@ -452,6 +502,7 @@ io.sockets.on('connection', function (socket) { // conexion
 			  
 	});
 
+	
 
 });
 

@@ -26,6 +26,12 @@ try {
 	});
 	
 
+
+	socket.on('actualizarBusquedaNombre', function (data){
+		$('#tablaSearchByName').append('<tr><td>'+ data["_id"]+'</td><td>'+ data["nombre"]+'</td><td>'+ data["apellidoP"]+'</td><td>'+ data["apellidoM"]+'</td><td>'+ data["e-mail"]+'</td><td>'+ data["universidad"]+'</td><td>'+ data["carrera"]+'</td><td>'+ data["años"]+'</td></tr>');
+	});
+
+
 	socket.on('actualizarFormulario', function (data){
 
 		$('#rut').val("");
@@ -72,6 +78,15 @@ $(function() {
 		
 		socket.emit('listarPrimerBtn', {});
 	});	
+
+	$('#btnSearchByName').click(function() {
+		$('#tablaSearchByName').html("");	
+		var nombre  = $('#busquedaNombre').val();
+		socket.emit('SearchByName', { text: nombre });
+	});	
+	
+
+	
 });
 
 
