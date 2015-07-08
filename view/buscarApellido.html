@@ -36,18 +36,18 @@
 
  	<div class="container">
  		<div class="well">
- 			<h1> Búsqueda por Apellido:</h1>
+ 			<h1> Búsqueda por Apellido Paterno:</h1>
  			<br>
 
 
 			<div class="row">
 				<div class="col-md-10">
 				  <div class="form-group">
-                          <input type="text" class="form-control" id="apellido" placeholder="Apellido" name="estudiante[apellido]" required>
+                          <input type="text" class="form-control" id="busquedaApellido" placeholder="Apellido" name="estudiante[apellido]" required>
               	</div>
 				</div>
 				<div class="col-md-2">
-					  <button type="submit"  class="btn btn-warning btn-lg btn-block"> <i class="glyphicon glyphicon-search"></i></button>
+					  <button type="submit"   id="btnSearchBySurname" class="btn btn-warning btn-lg btn-block"> <i class="glyphicon glyphicon-search"></i></button>
 	            
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 					      
 					      </tr>
 					    </thead>
-					    <tbody id ="tablaListarPrimer">
+					    <tbody id ="tablaSearchBySurname">
 					    </tbody>
 					  </table>
 

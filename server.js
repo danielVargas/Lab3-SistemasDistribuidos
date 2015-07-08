@@ -401,7 +401,7 @@ io.sockets.on('connection', function (socket) { // conexion
 	socket.on('SearchByName', function (data){
 			  var nombre = data.text;
 			  var collec = ['estudiantes'];
-			  console.log(nombre);
+			 
 			  
 		 	  var db = require("mongojs").connect(databaseUrl, collec);
 			  var collection = db.collection('estudiantes');
@@ -441,7 +441,52 @@ io.sockets.on('connection', function (socket) { // conexion
 		
 			  
 	});
+	
 
+
+	socket.on('SearchBySurname', function (data){
+			  var apellidoP = data.text;
+			  var collec = ['estudiantes'];
+			  
+			  
+		 	  var db = require("mongojs").connect(databaseUrl, collec);
+			  var collection = db.collection('estudiantes');
+			  db.estudiantes.find({ "apellidoP" : apellidoP},function(err, docs) {
+				// docs is an array of all the documents in mycollection
+					for (var i = 0; i < docs.length; i++) {
+						socket.emit('actualizarBusquedaapellidoP', docs[i]);
+						//
+						
+					};
+
+			  });
+		 	  var db = require("mongojs").connect(databaseUrl2, collec);
+				  var collection = db.collection('estudiantes');
+				  db.estudiantes.find({ "apellidoP" : apellidoP},function(err, docs) {
+					// docs is an array of all the documents in mycollection
+						for (var i = 0; i < docs.length; i++) {
+							socket.emit('actualizarBusquedaapellidoP', docs[i]);
+							//
+							
+						};
+
+				  });
+			 	var db = require("mongojs").connect(databaseUrl3, collec);
+					var collection = db.collection('estudiantes');
+					db.estudiantes.find({ "apellidoP" : apellidoP},function(err, docs) {
+						// docs is an array of all the documents in mycollection
+							for (var i = 0; i < docs.length; i++) {
+								socket.emit('actualizarBusquedaapellidoP', docs[i]);
+								//
+								
+
+							}; 
+
+			  });
+
+		
+			  
+	});
 
 	socket.on('actualizaModificar', function (data){
 			  var id = data.text;

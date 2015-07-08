@@ -32,6 +32,10 @@ try {
 	});
 
 
+	socket.on('actualizarBusquedaapellidoP', function (data){
+		$('#tablaSearchBySurname').append('<tr><td>'+ data["_id"]+'</td><td>'+ data["nombre"]+'</td><td>'+ data["apellidoP"]+'</td><td>'+ data["apellidoM"]+'</td><td>'+ data["e-mail"]+'</td><td>'+ data["universidad"]+'</td><td>'+ data["carrera"]+'</td><td>'+ data["años"]+'</td></tr>');
+	});
+
 	socket.on('actualizarFormulario', function (data){
 
 		$('#rut').val("");
@@ -84,7 +88,11 @@ $(function() {
 		var nombre  = $('#busquedaNombre').val();
 		socket.emit('SearchByName', { text: nombre });
 	});	
-	
+	$('#btnSearchBySurname').click(function() {
+		$('#tablaSearchBySurname').html("");	
+		var apellido  = $('#busquedaApellido').val();
+		socket.emit('SearchBySurname', { text: apellido });
+	});
 
 	
 });
